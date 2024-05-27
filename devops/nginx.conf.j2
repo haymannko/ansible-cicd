@@ -1,11 +1,10 @@
-server{
+server {
   listen 80; #Listen on port 80 (HTTP)
   server_name {{ DOMAIN_NAME }};
 
   #Proxy requests to the Next.js server
   location /{
     #Pass requests to the Next.js server running on localhost:3000
-    localhost:3000
     proxy_pass http://localhost:3001;
 
     #Proxy settings to handle WebSockets and HTTP/1.1 
@@ -16,7 +15,7 @@ server{
 
     #Additional proxy headers
     proxy_set_header X-Real-IP $remote_addr;
-    proxy_set_header X-Forwarded-For $proxy-add-x-forwarded-for;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header X-Forwarded-Proto $Scheme;
 
     #Error handling and redirects

@@ -44,7 +44,7 @@ tasks:
 
   - name: Run Docker container
     docker_container:
-      name: nextjs_container "{{CONTAINER_NAME}}"
+      name: "{{CONTAINER_NAME}}"
       image: "{{IMAGE_NAME}}"
       state: started
       restart_policy: always
