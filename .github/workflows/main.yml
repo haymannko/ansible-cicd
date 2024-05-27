@@ -65,5 +65,4 @@ jobs:
           --extra-vars "dockerhub_username=$DOCKERHUB_USERNAME" \
           --extra-vars "dockerhub_token=$DOCKERHUB_TOKEN" \
           --extra-vars "ansible_ssh_common_args='-o StrictHostKeychecking=no'" \
-          --ssh -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no \
           devops/playbook.yml
