@@ -52,7 +52,7 @@
         pull: true
         restart_policy: always
         ports:
-          - "3001:3000"  
+          - "3001:3000"
 
     - name: Wait for container to start
       wait_for:
@@ -68,7 +68,7 @@
 
     - name: Configure Nginx
       template:
-        src: nginx.conf.js
+        src: nginx.conf.j2
         dest: "/etc/nginx/sites-available/{{ DOMAIN_NAME }}"
       notify: Reload Nginx
 
@@ -77,11 +77,10 @@
         src: "/etc/nginx/sites-available/{{ DOMAIN_NAME }}"
         dest: "/etc/nginx/sites-enabled/{{ DOMAIN_NAME }}"
         state: link
-      when: not nginx_config.stat.exists 
-
+      when: not nginx_config.stat.exists
 
   handlers:
     - name: Reload Nginx
       service:
         name: nginx
-        state: reloaded   
+        state: reloaded
